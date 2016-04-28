@@ -3,6 +3,7 @@ from shutit_module import ShutItModule
 class git_101_tutorial(ShutItModule):
 
 	def build(self, shutit):
+		shutit.send('cd /myproject')
 		shutit.challenge(
 			'''In this tutorial you will be asked to set up git on your machine,
 create a repository, and add and commit some code to it.
@@ -119,7 +120,7 @@ change from git's point of view.''',
 				'ok_container_name':'imiell/git-101-tutorial:step_10'
 			}
 		)
-		shutit.challenge('''Commit the file again.
+		shutit.challenge('''Add and commit the file again.
 
 Again, you can run 'git status' and 'git log' to see what git thinks has happened.''',
 			'a93424203ffcd103f1483b67e00dd1cc',
