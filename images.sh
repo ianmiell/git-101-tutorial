@@ -2,7 +2,7 @@
 set -x
 set -u
 set -e
-IMAGE_NAME= YOUR IMAGE NAME
+IMAGE_NAME="imiell/git-101-tutorial"
 #docker images | tac | grep "$IMAGE_NAME" | awk '{print $3}' | xargs docker rmi
 docker build -t $IMAGE_NAME .
 x=1

@@ -2,94 +2,140 @@ from shutit_module import ShutItModule
 
 class git_101_tutorial(ShutItModule):
 
-
 	def build(self, shutit):
-		# Some useful API calls for reference. See shutit's docs for more info and options:
-		#
-		# ISSUING BASH COMMANDS
-		# shutit.send(send,expect=<default>) - Send a command, wait for expect (string or compiled regexp)
-		#                                      to be seen before continuing. By default this is managed
-		#                                      by ShutIt with shell prompts.
-		# shutit.multisend(send,send_dict)   - Send a command, dict contains {expect1:response1,expect2:response2,...}
-		# shutit.send_and_get_output(send)   - Returns the output of the sent command
-		# shutit.send_and_match_output(send, matches) 
-		#                                    - Returns True if any lines in output match any of 
-		#                                      the regexp strings in the matches list
-		# shutit.send_until(send,regexps)    - Send command over and over until one of the regexps seen in the output.
-		# shutit.run_script(script)          - Run the passed-in string as a script
-		# shutit.install(package)            - Install a package
-		# shutit.remove(package)             - Remove a package
-		# shutit.login(user='root', command='su -')
-		#                                    - Log user in with given command, and set up prompt and expects.
-		#                                      Use this if your env (or more specifically, prompt) changes at all,
-		#                                      eg reboot, bash, ssh
-		# shutit.logout(command='exit')      - Clean up from a login.
-		# 
-		# COMMAND HELPER FUNCTIONS
-		# shutit.add_to_bashrc(line)         - Add a line to bashrc
-		# shutit.get_url(fname, locations)   - Get a file via url from locations specified in a list
-		# shutit.get_ip_address()            - Returns the ip address of the target
-		# shutit.command_available(command)  - Returns true if the command is available to run
-		#
-		# LOGGING AND DEBUG
-		# shutit.log(msg,add_final_message=False) -
-		#                                      Send a message to the log. add_final_message adds message to
-		#                                      output at end of build
-		# shutit.pause_point(msg='')         - Give control of the terminal to the user
-		# shutit.step_through(msg='')        - Give control to the user and allow them to step through commands
-		#
-		# SENDING FILES/TEXT
-		# shutit.send_file(path, contents)   - Send file to path on target with given contents as a string
-		# shutit.send_host_file(path, hostfilepath)
-		#                                    - Send file from host machine to path on the target
-		# shutit.send_host_dir(path, hostfilepath)
-		#                                    - Send directory and contents to path on the target
-		# shutit.insert_text(text, fname, pattern)
-		#                                    - Insert text into file fname after the first occurrence of 
-		#                                      regexp pattern.
-		# shutit.delete_text(text, fname, pattern)
-		#                                    - Delete text from file fname after the first occurrence of
-		#                                      regexp pattern.
-		# shutit.replace_text(text, fname, pattern)
-		#                                    - Replace text from file fname after the first occurrence of
-		#                                      regexp pattern.
-		# ENVIRONMENT QUERYING
-		# shutit.host_file_exists(filename, directory=False)
-		#                                    - Returns True if file exists on host
-		# shutit.file_exists(filename, directory=False)
-		#                                    - Returns True if file exists on target
-		# shutit.user_exists(user)           - Returns True if the user exists on the target
-		# shutit.package_installed(package)  - Returns True if the package exists on the target
-		# shutit.set_password(password, user='')
-		#                                    - Set password for a given user on target
-		#
-		# USER INTERACTION
-		# shutit.get_input(msg,default,valid[],boolean?,ispass?)
-		#                                    - Get input from user and return output
-		# shutit.fail(msg)                   - Fail the program and exit with status 1
-		# 
-		return True
+		shutit.challenge(
+			'''In this tutorial you will be asked to set up git on your machine,
+create a repository, and add and commit some code to it.
 
-	def get_config(self, shutit):
-		# CONFIGURATION
-		# shutit.get_config(module_id,option,default=None,boolean=False)
-		#                                    - Get configuration value, boolean indicates whether the item is 
-		#                                      a boolean type, eg get the config with:
-		# shutit.get_config(self.module_id, 'myconfig', default='a value')
-		#                                      and reference in your code with:
-		# shutit.cfg[self.module_id]['myconfig']
-		return True
+You have a full bash shell, so can use vi, less, man etc..
 
-	def test(self, shutit):
-		# For test cycle part of the ShutIt build.
-		return True
+If any tools are missing or there are bugs raise a github request or contact
+@ianmiell on twitter.
 
-	def finalize(self, shutit):
-		# Any cleanup required at the end.
+CTRL-] (right angle bracket) to continue.
+''',
+			'1',
+			challenge_type='golf',
+			expect_type='exact',
+			hints=['Hit CTRL-]'],
+			congratulations='OK!',
+			follow_on_context={
+				'check_command':'echo 1',
+				'context':'docker',
+				'reset_container_name':'imiell/git-101-tutorial:step_4',
+				'ok_container_name':'imiell/git-101-tutorial:step_4'
+			}
+		)
+		shutit.challenge('''Configure git to tell it who you are (user.name and user.email). Don't forget that CTRL-h will give you hints.''',
+			'11',
+			challenge_type='golf',
+			expect_type='exact',
+			hints=['man git config','git config --global','git config --global user.email "you@example.com"','git config --global user.name "Your Name"'],
+			congratulations='OK!',
+			follow_on_context={
+				'check_command':r"""cat -s <(git config -l | grep user.email | wc -l) <(git config -l | grep user.name | wc -l) | tr -d '\n'""",
+				'context':'docker',
+				'reset_container_name':'imiell/git-101-tutorial:step_4',
+				'ok_container_name':'imiell/git-101-tutorial:step_5'
+			}
+		)
+		shutit.challenge('''Initialize a git repo in this folder. Don't create a subfolder or give git a folder name.''',
+			'897316929176464ebc9ad085f31e7284',
+			challenge_type='golf',
+			expect_type='md5sum',
+			hints=['git init'],
+			congratulations='OK!',
+			follow_on_context={
+				'check_command':'cat <(git status -s)  <(git branch | wc -l)',
+				'context':'docker',
+				'reset_container_name':'imiell/git-101-tutorial:step_5',
+				'ok_container_name':'imiell/git-101-tutorial:step_6'
+			}
+		)
+		shutit.challenge('''Create a file called 'mycode.py' and put the line:
+
+#!/usr/bin/env python
+
+in it.
+
+Then run git status to see what git thinks is going on in this repo.''',
+			'e9babeb3800fad4d7f5ecf1c097b8be1',
+			challenge_type='golf',
+			expect_type='md5sum',
+			hints=['echo "#!/usr/bin/env python" > mycode.py'],
+			congratulations='OK!',
+			follow_on_context={
+				'check_command':'cat mycode.py <(git status -s) <(find *)',
+				'context':'docker',
+				'reset_container_name':'imiell/git-101-tutorial:step_6',
+				'ok_container_name':'imiell/git-101-tutorial:step_7'
+			}
+		)
+		shutit.challenge('''Add this file to your git repo ready to commit.
+
+Then try running 'git status' again to see how git's view of this file has
+changed.''',
+			'e62f504bd6c4bc37fe75de05111b0b7d',
+			challenge_type='golf',
+			expect_type='md5sum',
+			hints=['git add mycode.py'],
+			congratulations='OK!',
+			follow_on_context={
+				'check_command':'cat mycode.py <(git status -s) <(find *)',
+				'context':'docker',
+				'reset_container_name':'imiell/git-101-tutorial:step_7',
+				'ok_container_name':'imiell/git-101-tutorial:step_8'
+			}
+		)
+		shutit.challenge('''Commit the file to the git repo.
+
+Then run 'git log' to see the history of the repository has now started''',
+			'6f88182b0d012dbda84be60d202149be',
+			challenge_type='golf',
+			expect_type='md5sum',
+			hints=['git commit'],
+			congratulations='OK!',
+			follow_on_context={
+				'check_command':'cat mycode.py <(git status -s) <(find *)',
+				'context':'docker',
+				'reset_container_name':'imiell/git-101-tutorial:step_8',
+				'ok_container_name':'imiell/git-101-tutorial:step_9'
+			}
+		)
+		# TODO hints
+		shutit.challenge('''Add the line 'import string' to the mycode.py file. Do not commit it.
+
+Then run 'git status' and 'git log' to see the status of the file and the
+change from git's point of view.''',
+			'd65ee5d18ffe6ece5a520155e06a24ad',
+			challenge_type='golf',
+			expect_type='md5sum',
+			hints=[''],
+			congratulations='OK!',
+			follow_on_context={
+				'check_command':'cat mycode.py <(git status -s) <(find *)',
+				'context':'docker',
+				'reset_container_name':'imiell/git-101-tutorial:step_9',
+				'ok_container_name':'imiell/git-101-tutorial:step_10'
+			}
+		)
+		shutit.challenge('''Commit the file again.
+
+Again, you can run 'git status' and 'git log' to see what git thinks has happened.''',
+			'a93424203ffcd103f1483b67e00dd1cc',
+			challenge_type='golf',
+			expect_type='md5sum',
+			hints=[''],
+			congratulations='OK!',
+			follow_on_context={
+				'check_command':'cat mycode.py <(git status -s) <(find *)',
+				'context':'docker',
+				'reset_container_name':'imiell/git-101-tutorial:step_10',
+				'ok_container_name':'imiell/git-101-tutorial:step_11'
+			}
+		)
+		shutit.pause_point('Tutorial complete! Feel free to mess around at the back :)')
 		return True
-	
-	def is_installed(self, shutit):
-		return False
 
 
 def module():
