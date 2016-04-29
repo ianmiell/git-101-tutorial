@@ -1,0 +1,6 @@
+{
+  "name": "Git-101-tutorial",
+  "tagline": "A ShutIt-based tutorial on git 101.",
+  "body": "### Git 101 Tutorial\r\nThis is that\r\n\r\n### Install and run\r\n\r\n```\r\n# install docker\r\n# install python-pip (aka pip)\r\ngit clone https://github.com/ianmiell/git-101-tutorial && cd git-101-tutorial\r\n./run.sh\r\n```\r\n\r\nand follow the instructions.\r\n\r\n### How it works\r\n\r\n\r\n\r\n### Authors and Contributors\r\n@ianmiell\r\n\r\n### Support or Contact\r\nTweet @ianmiell\r\n",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
