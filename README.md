@@ -8,3 +8,4 @@ git clone https://github.com/ianmiell/git-101-tutorial && cd git-101-tutorial
 ./run.sh
 ```
 
+See [here](http://ianmiell.github.io/git-101-tutorial/)
