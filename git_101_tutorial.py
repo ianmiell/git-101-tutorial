@@ -135,7 +135,6 @@ Again, you can run 'git status' and 'git log' to see what git thinks has happene
 				'ok_container_name':'imiell/git-101-tutorial:step_11'
 			}
 		)
-		shutit.pause_point('Tutorial complete! Feel free to mess around at the back :)')
 		return True
 
 
