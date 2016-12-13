@@ -1,6 +1,6 @@
 FROM debian
 # Step 2 done
-RUN apt-get update && apt-get install -y git lsb-release vim bsdmainutils man-db manpages && mkdir -p myproject && touch /root/.bash_history
+RUN apt-get update && apt-get install -y git lsb-release vim bsdmainutils man-db manpages && mkdir -p /myproject && touch /root/.bash_history && echo cd /myproject >> /root/.bash_history
 # Step 3 done
 WORKDIR /myproject
 # Step 4 done
