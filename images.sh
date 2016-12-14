@@ -7,9 +7,9 @@ IMAGE_NAME="imiell/git-101-tutorial"
 docker build -t $IMAGE_NAME .
 x=1
 docker history -q "${IMAGE_NAME}:latest" | tac
-for id in $(docker history -q "${IMAGE_NAME}:latest" | tac)
+for id in $(docker history -q "${IMAGE_NAME}:latest" | tac | grep -v missing)
 do
-	docker tag -f "${id}" "${IMAGE_NAME}:step_$x"
+	docker tag "${id}" "${IMAGE_NAME}:step_$x"
 	((x++))
 done
 docker push "${IMAGE_NAME}"
