@@ -23,8 +23,8 @@ CTRL-] (right angle bracket) to continue.
 			follow_on_context={
 				'check_command':'echo 1',
 				'context':'docker',
-				'reset_container_name':'imiell/git-101-tutorial:step_4',
-				'ok_container_name':'imiell/git-101-tutorial:step_4'
+				'reset_container_name':'imiell/git-101-tutorial:step_3',
+				'ok_container_name':'imiell/git-101-tutorial:step_3'
 			}
 		)
 		shutit.challenge('''Configure git to tell it who you are (user.name and user.email). Don't forget that CTRL-h will give you hints.''',
@@ -36,8 +36,8 @@ CTRL-] (right angle bracket) to continue.
 			follow_on_context={
 				'check_command':r"""cat -s <(git config -l | grep user.email | wc -l) <(git config -l | grep user.name | wc -l) | tr -d '\n'""",
 				'context':'docker',
-				'reset_container_name':'imiell/git-101-tutorial:step_4',
-				'ok_container_name':'imiell/git-101-tutorial:step_5'
+				'reset_container_name':'imiell/git-101-tutorial:step_3',
+				'ok_container_name':'imiell/git-101-tutorial:step_4'
 			}
 		)
 		shutit.challenge('''Initialize a git repo in the /myproject folder. Don't create a subfolder or give git a folder name.''',
@@ -49,8 +49,8 @@ CTRL-] (right angle bracket) to continue.
 			follow_on_context={
 				'check_command':'cat <(git status -s)  <(git branch | wc -l)',
 				'context':'docker',
-				'reset_container_name':'imiell/git-101-tutorial:step_5',
-				'ok_container_name':'imiell/git-101-tutorial:step_6'
+				'reset_container_name':'imiell/git-101-tutorial:step_4',
+				'ok_container_name':'imiell/git-101-tutorial:step_5'
 			}
 		)
 		shutit.challenge('''Create a file called 'mycode.py' and put the line:
@@ -68,8 +68,8 @@ Then run git status to see what git thinks is going on in this repo.''',
 			follow_on_context={
 				'check_command':'cat mycode.py <(git status -s) <(find *)',
 				'context':'docker',
-				'reset_container_name':'imiell/git-101-tutorial:step_6',
-				'ok_container_name':'imiell/git-101-tutorial:step_7'
+				'reset_container_name':'imiell/git-101-tutorial:step_5',
+				'ok_container_name':'imiell/git-101-tutorial:step_6'
 			}
 		)
 		shutit.challenge('''Add this file to your git repo ready to commit.
@@ -84,8 +84,8 @@ changed.''',
 			follow_on_context={
 				'check_command':'cat mycode.py <(git status -s) <(find *)',
 				'context':'docker',
-				'reset_container_name':'imiell/git-101-tutorial:step_7',
-				'ok_container_name':'imiell/git-101-tutorial:step_8'
+				'reset_container_name':'imiell/git-101-tutorial:step_6',
+				'ok_container_name':'imiell/git-101-tutorial:step_7'
 			}
 		)
 		shutit.challenge('''Commit the file to the git repo.
@@ -99,8 +99,8 @@ Then run 'git log' to see the history of the repository has now started''',
 			follow_on_context={
 				'check_command':'cat mycode.py <(git status -s) <(find *)',
 				'context':'docker',
-				'reset_container_name':'imiell/git-101-tutorial:step_8',
-				'ok_container_name':'imiell/git-101-tutorial:step_9'
+				'reset_container_name':'imiell/git-101-tutorial:step_7',
+				'ok_container_name':'imiell/git-101-tutorial:step_8'
 			}
 		)
 		# TODO hints
@@ -116,8 +116,8 @@ change from git's point of view.''',
 			follow_on_context={
 				'check_command':'cat mycode.py <(git status -s) <(find *)',
 				'context':'docker',
-				'reset_container_name':'imiell/git-101-tutorial:step_9',
-				'ok_container_name':'imiell/git-101-tutorial:step_10'
+				'reset_container_name':'imiell/git-101-tutorial:step_8',
+				'ok_container_name':'imiell/git-101-tutorial:step_9'
 			}
 		)
 		shutit.challenge('''Add and commit the file again.
@@ -131,8 +131,8 @@ Again, you can run 'git status' and 'git log' to see what git thinks has happene
 			follow_on_context={
 				'check_command':'cat mycode.py <(git status -s) <(find *)',
 				'context':'docker',
-				'reset_container_name':'imiell/git-101-tutorial:step_10',
-				'ok_container_name':'imiell/git-101-tutorial:step_11'
+				'reset_container_name':'imiell/git-101-tutorial:step_9',
+				'ok_container_name':'imiell/git-101-tutorial:step_10'
 			}
 		)
 		return True

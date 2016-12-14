@@ -1,11 +1,11 @@
 FROM debian
-# Step 2 done
-RUN apt-get update && apt-get install -y git lsb-release vim bsdmainutils man-db manpages && mkdir -p /myproject && touch /root/.bash_history && echo cd /myproject >> /root/.bash_history
 # Step 3 done
-WORKDIR /myproject
+RUN apt-get update && apt-get install -y git lsb-release vim bsdmainutils man-db manpages && mkdir -p /myproject && touch /root/.bash_history
 # Step 4 done
-RUN git config --global user.email "you@example.com" && git config --global user.name "Your Name" && echo 'git config --global user.email "you@example.com" && git config --global user.name "Your Name"' >> /root/.bash_history
+WORKDIR /myproject
 # Step 5 done
+RUN git config --global user.email "you@example.com" && git config --global user.name "Your Name" && echo 'git config --global user.email "you@example.com" && git config --global user.name "Your Name"' >> /root/.bash_history
+# Step 4 done
 RUN git init && echo 'git init' >> /root/.bash_history
 # Step 6 done
 RUN echo "#!/usr/bin/env python" > mycode.py && echo 'echo "#!/usr/bin/env python" > mycode.py' >> /root/.bash_history
