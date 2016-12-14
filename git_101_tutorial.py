@@ -31,7 +31,7 @@ CTRL-] (right angle bracket) to continue.
 			'11',
 			challenge_type='golf',
 			expect_type='exact',
-			hints=['man git config','git config --global','git config --global user.email "you@example.com"','git config --global user.name "Your Name"'],
+			hints=['man git config','git config --global'],
 			congratulations='OK!',
 			follow_on_context={
 				'check_command':r"""cat -s <(git config -l | grep user.email | wc -l) <(git config -l | grep user.name | wc -l) | tr -d '\n'""",
@@ -40,11 +40,11 @@ CTRL-] (right angle bracket) to continue.
 				'ok_container_name':'imiell/git-101-tutorial:step_5'
 			}
 		)
-		shutit.challenge('''Initialize a git repo in this folder. Don't create a subfolder or give git a folder name.''',
+		shutit.challenge('''Initialize a git repo in the /myproject folder. Don't create a subfolder or give git a folder name.''',
 			'897316929176464ebc9ad085f31e7284',
 			challenge_type='golf',
 			expect_type='md5sum',
-			hints=['git init'],
+			hints=[],
 			congratulations='OK!',
 			follow_on_context={
 				'check_command':'cat <(git status -s)  <(git branch | wc -l)',
@@ -104,7 +104,7 @@ Then run 'git log' to see the history of the repository has now started''',
 			}
 		)
 		# TODO hints
-		shutit.challenge('''Add the line 'import string' to the mycode.py file. Do not commit it.
+		shutit.challenge('''Add the line 'import string' to the mycode.py file. Do not commit it. Do not add any empty lines.
 
 Then run 'git status' and 'git log' to see the status of the file and the
 change from git's point of view.''',
