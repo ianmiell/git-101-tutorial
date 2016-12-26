@@ -26,6 +26,7 @@ CTRL-] (right angle bracket) to continue.
 				'reset_container_name':'imiell/git-101-tutorial:step_3',
 				'ok_container_name':'imiell/git-101-tutorial:step_3'
 			}
+			num_stages=8
 		)
 		shutit.challenge('''Configure git to tell it who you are (user.name and user.email). Don't forget that CTRL-h will give you hints.''',
 			'11',
