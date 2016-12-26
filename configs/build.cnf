@@ -15,7 +15,7 @@ shutit.core.module.allowed_images:["imiell/git-101-tutorial.*"]
 
 # Aspects of build process
 [build]
-base_image:imiell/git-101-tutorial:step_4
+base_image:imiell/git-101-tutorial:step_2
 
 # Volume arguments wanted as part of the build
 [target]
