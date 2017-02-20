@@ -10,9 +10,6 @@ create a repository, and add and commit some code to it.
 
 You have a full bash shell, so can use vi, less, man etc..
 
-If any tools are missing or there are bugs raise a github request or contact
-@ianmiell on twitter.
-
 CTRL-] (right angle bracket) to continue.
 ''',
 			'1',
