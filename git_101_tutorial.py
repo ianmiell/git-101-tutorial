@@ -4,6 +4,9 @@ class git_101_tutorial(ShutItModule):
 
 	def build(self, shutit):
 		shutit.send('cd /myproject')
+		if shutit.send_and_get_output('git version') != 'git version 2.1.4':
+			shutit.fail('unexpected git version')
+
 		shutit.challenge(
 			'''In this tutorial you will be asked to set up git on your machine,
 create a repository, and add and commit some code to it.
@@ -58,13 +61,13 @@ CTRL-] (right angle bracket) to continue.
 in it.
 
 Then run git status to see what git thinks is going on in this repo.''',
-			'e9babeb3800fad4d7f5ecf1c097b8be1',
+			'e2ac2db4ef94965e8f02095a27b65f2d',
 			challenge_type='golf',
 			expect_type='md5sum',
 			hints=['echo "#!/usr/bin/env python" > mycode.py'],
 			congratulations='OK!',
 			follow_on_context={
-				'check_command':'cat mycode.py <(git status -s) <(find *)',
+				'check_command':r'''cat <(sed 's/^[[:blank:]]*//;s/[[:blank:]]*$//' mycode.py) <(git status -s) <(find *)''',
 				'context':'docker',
 				'reset_container_name':'imiell/git-101-tutorial:step_5',
 				'ok_container_name':'imiell/git-101-tutorial:step_6'
@@ -74,13 +77,13 @@ Then run git status to see what git thinks is going on in this repo.''',
 
 Then try running 'git status' again to see how git's view of this file has
 changed.''',
-			'e62f504bd6c4bc37fe75de05111b0b7d',
+			'1a8779dd8b7a61f23de73bcc0702f920',
 			challenge_type='golf',
 			expect_type='md5sum',
 			hints=['git add mycode.py'],
 			congratulations='OK!',
 			follow_on_context={
-				'check_command':'cat mycode.py <(git status -s) <(find *)',
+				'check_command':r'''cat <(sed 's/^[[:blank:]]*//;s/[[:blank:]]*$//' mycode.py) <(git status -s) <(find *)''',
 				'context':'docker',
 				'reset_container_name':'imiell/git-101-tutorial:step_6',
 				'ok_container_name':'imiell/git-101-tutorial:step_7'
@@ -89,13 +92,13 @@ changed.''',
 		shutit.challenge('''Commit the file to the git repo.
 
 Then run 'git log' to see the history of the repository has now started''',
-			'6f88182b0d012dbda84be60d202149be',
+			'912251e04d2205b833772a31ca95f330',
 			challenge_type='golf',
 			expect_type='md5sum',
 			hints=['git commit'],
 			congratulations='OK!',
 			follow_on_context={
-				'check_command':'cat mycode.py <(git status -s) <(find *)',
+				'check_command':r'''cat <(sed 's/^[[:blank:]]*//;s/[[:blank:]]*$//' mycode.py) <(git status -s) <(find *)''',
 				'context':'docker',
 				'reset_container_name':'imiell/git-101-tutorial:step_7',
 				'ok_container_name':'imiell/git-101-tutorial:step_8'
@@ -106,13 +109,13 @@ Then run 'git log' to see the history of the repository has now started''',
 
 Then run 'git status' and 'git log' to see the status of the file and the
 change from git's point of view.''',
-			'd65ee5d18ffe6ece5a520155e06a24ad',
+			'8b13003240e0f264617cfc0892e194d0',
 			challenge_type='golf',
 			expect_type='md5sum',
 			hints=[''],
 			congratulations='OK!',
 			follow_on_context={
-				'check_command':'cat mycode.py <(git status -s) <(find *)',
+				'check_command':r'''cat <(sed 's/^[[:blank:]]*//;s/[[:blank:]]*$//' mycode.py) <(git status -s) <(find *)''',
 				'context':'docker',
 				'reset_container_name':'imiell/git-101-tutorial:step_8',
 				'ok_container_name':'imiell/git-101-tutorial:step_9'
@@ -121,13 +124,13 @@ change from git's point of view.''',
 		shutit.challenge('''Add and commit the file again.
 
 Again, you can run 'git status' and 'git log' to see what git thinks has happened.''',
-			'a93424203ffcd103f1483b67e00dd1cc',
+			'814967123be30fe11960749d22564000',
 			challenge_type='golf',
 			expect_type='md5sum',
 			hints=[''],
 			congratulations='OK!',
 			follow_on_context={
-				'check_command':'cat mycode.py <(git status -s) <(find *)',
+				'check_command':r'''cat <(sed 's/^[[:blank:]]*//;s/[[:blank:]]*$//' mycode.py) <(git status -s) <(find *)''',
 				'context':'docker',
 				'reset_container_name':'imiell/git-101-tutorial:step_9',
 				'ok_container_name':'imiell/git-101-tutorial:step_10'
