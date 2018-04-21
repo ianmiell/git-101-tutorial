@@ -67,7 +67,7 @@ Then run git status to see what git thinks is going on in this repo.''',
 			hints=['echo "#!/usr/bin/env python" > mycode.py'],
 			congratulations='OK!',
 			follow_on_context={
-				'check_command':r'''cat <(sed 's/^[[:blank:]]*//;s/[[:blank:]]*$//' mycode.py) <(git status -s) <(find *)''',
+				'check_command':r'''cat <(sed 's/^[[:blank:]]*//;s/[[:blank:]]*$//' mycode.py | sed -e :a -e '/./,$!d;/^\n*$/{$d;N;};/\n$/ba') <(git status -s) <(find *)''',
 				'context':'docker',
 				'reset_container_name':'imiell/git-101-tutorial:step_5',
 				'ok_container_name':'imiell/git-101-tutorial:step_6'
@@ -83,7 +83,7 @@ changed.''',
 			hints=['git add mycode.py'],
 			congratulations='OK!',
 			follow_on_context={
-				'check_command':r'''cat <(sed 's/^[[:blank:]]*//;s/[[:blank:]]*$//' mycode.py) <(git status -s) <(find *)''',
+				'check_command':r'''cat <(sed 's/^[[:blank:]]*//;s/[[:blank:]]*$//' mycode.py | sed -e :a -e '/./,$!d;/^\n*$/{$d;N;};/\n$/ba') <(git status -s) <(find *)''',
 				'context':'docker',
 				'reset_container_name':'imiell/git-101-tutorial:step_6',
 				'ok_container_name':'imiell/git-101-tutorial:step_7'
@@ -98,7 +98,7 @@ Then run 'git log' to see the history of the repository has now started''',
 			hints=['git commit'],
 			congratulations='OK!',
 			follow_on_context={
-				'check_command':r'''cat <(sed 's/^[[:blank:]]*//;s/[[:blank:]]*$//' mycode.py) <(git status -s) <(find *)''',
+				'check_command':r'''cat <(sed 's/^[[:blank:]]*//;s/[[:blank:]]*$//' mycode.py | sed -e :a -e '/./,$!d;/^\n*$/{$d;N;};/\n$/ba') <(git status -s) <(find *)''',
 				'context':'docker',
 				'reset_container_name':'imiell/git-101-tutorial:step_7',
 				'ok_container_name':'imiell/git-101-tutorial:step_8'
@@ -115,7 +115,7 @@ change from git's point of view.''',
 			hints=[''],
 			congratulations='OK!',
 			follow_on_context={
-				'check_command':r'''cat <(sed 's/^[[:blank:]]*//;s/[[:blank:]]*$//' mycode.py) <(git status -s) <(find *)''',
+				'check_command':r'''cat <(sed 's/^[[:blank:]]*//;s/[[:blank:]]*$//' mycode.py | sed -e :a -e '/./,$!d;/^\n*$/{$d;N;};/\n$/ba') <(git status -s) <(find *)''',
 				'context':'docker',
 				'reset_container_name':'imiell/git-101-tutorial:step_8',
 				'ok_container_name':'imiell/git-101-tutorial:step_9'
@@ -130,7 +130,7 @@ Again, you can run 'git status' and 'git log' to see what git thinks has happene
 			hints=[''],
 			congratulations='OK!',
 			follow_on_context={
-				'check_command':r'''cat <(sed 's/^[[:blank:]]*//;s/[[:blank:]]*$//' mycode.py) <(git status -s) <(find *)''',
+				'check_command':r'''cat <(sed 's/^[[:blank:]]*//;s/[[:blank:]]*$//' mycode.py | sed -e :a -e '/./,$!d;/^\n*$/{$d;N;};/\n$/ba') <(git status -s) <(find *)''',
 				'context':'docker',
 				'reset_container_name':'imiell/git-101-tutorial:step_9',
 				'ok_container_name':'imiell/git-101-tutorial:step_10'
