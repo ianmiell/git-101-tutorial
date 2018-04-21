@@ -39,7 +39,7 @@ CTRL-] (right angle bracket) to continue.
 			}
 		)
 		shutit.challenge('''Initialize a git repo in the /myproject folder. Don't create a subfolder or give git a folder name.''',
-			'897316929176464ebc9ad085f31e7284',
+			'cfcd208495d565ef66e7dff9f98764da',
 			challenge_type='golf',
 			expect_type='md5sum',
 			hints=[],
